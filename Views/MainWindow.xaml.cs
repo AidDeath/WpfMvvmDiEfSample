@@ -14,8 +14,6 @@ namespace WpfMvvmDiEfSample.Views
         {
             InitializeComponent();
 
-            IRandomStringService? randomStringService = App.Current.Services.GetService<IRandomStringService>();
-            TextBlock.Text = randomStringService?.GetRandomString();
         }
     }
 }

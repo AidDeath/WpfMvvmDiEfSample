@@ -2,6 +2,7 @@
 using System;
 using System.Windows;
 using WpfMvvmDiEfSample.Services;
+using WpfMvvmDiEfSample.ViewModels;
 
 namespace WpfMvvmDiEfSample
 {
@@ -27,6 +28,10 @@ namespace WpfMvvmDiEfSample
 
             //Here we add services
             services.AddTransient<IRandomStringService, RandomStringService>();
+
+
+            //ViewModels
+            //services.AddTransient<MainWindowViewModel>();
 
 
             return services.BuildServiceProvider();
