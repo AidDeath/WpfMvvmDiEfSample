@@ -10,9 +10,30 @@
         vml:ViewModelLocator.AutoHookedUpViewModel ="True"
         >
     <Grid>
-        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Width="500">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
             <TextBlock Name="TextBlock" FontSize="20" FontWeight="Bold" Background="Aqua" Text="{Binding Path=MainText}" />
             <Button Content="Press Me" Command="{Binding Path=UpdateTextCommand}"/>
+            
         </StackPanel>
+
+        <DockPanel Grid.Column="1" Margin="5">
+            <Button DockPanel.Dock="Bottom" Content="Press Me" Command="{Binding Path=ShowAllBandsCommand}"/>
+            <!--<ListBox ItemsSource="{Binding Bands}" DisplayMemberPath="Name"/>-->
+            <ListView ItemsSource="{Binding Path=Bands}">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn DisplayMemberBinding="{Binding Name}" Header="Band Name"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding Genre}" Header="Genre"/>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+
+        </DockPanel>
+
+        
     </Grid>
 </Window>

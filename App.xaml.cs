@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Windows;
+using WpfMvvmDiEfSample.Data;
 using WpfMvvmDiEfSample.Services;
 using WpfMvvmDiEfSample.ViewModels;
 
@@ -28,7 +29,9 @@ namespace WpfMvvmDiEfSample
 
             //Here we add services
             services.AddTransient<IRandomStringService, RandomStringService>();
+            services.AddTransient<BandService>();
 
+            services.AddDbContext<SampleContext>();
 
             //ViewModels
             //services.AddTransient<MainWindowViewModel>();
