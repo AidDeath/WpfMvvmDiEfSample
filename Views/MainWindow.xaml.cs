@@ -13,7 +13,6 @@ namespace WpfMvvmDiEfSample.Views
         public MainWindow()
         {
             InitializeComponent();
-
         }
     }
 }

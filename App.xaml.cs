@@ -31,6 +31,7 @@ namespace WpfMvvmDiEfSample
             services.AddTransient<IRandomStringService, RandomStringService>();
             services.AddTransient<BandService>();
 
+            //Here we add database context
             services.AddDbContext<SampleContext>();
 
             //ViewModels

@@ -6,7 +6,12 @@ using System.Windows;
 namespace WpfMvvmDiEfSample.ViewModels
 {
     /// <summary>
-    /// Not fully bad idea, but dont know how to pass Services into ViewModel Constructor
+    /// Not fully bad idea, could inject services to VM, but:
+    /// Has no suggestions in XAML binding... Not the best option to use
+    /// 
+    /// Binding to a View (put in XAML):
+    ///         xmlns:vml="clr-namespace:WpfMvvmDiEfSample.ViewModels"
+    ///         vml:ViewModelLocator.AutoHookedUpViewModel ="True"
     /// </summary>
     public static class ViewModelLocator
     {
