@@ -7,7 +7,9 @@
         Title="Sample" Height="450" Width="800"
         
         xmlns:vml="clr-namespace:WpfMvvmDiEfSample.ViewModels"
-        vml:ViewModelLocator.AutoHookedUpViewModel ="True"
+        vml:ViewModelLocator2.AutoWireViewModel="True"
+        
+        d:DataContext ="{d:DesignInstance {x:Type vml:MainWindowViewModel}}"
         >
     <Grid>
         <Grid.ColumnDefinitions>
