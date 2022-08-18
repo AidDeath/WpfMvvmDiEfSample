@@ -1,6 +1,4 @@
-﻿using MvvmHelpers;
-
-namespace WpfMvvmDiEfSample.Models
+﻿namespace WpfMvvmDiEfSample.Models
 {
     /// <summary>
     /// Class for value providing from background services to ViewModels or other

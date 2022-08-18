@@ -8,7 +8,7 @@
         
         xmlns:vml="clr-namespace:WpfMvvmDiEfSample.ViewModels"
         vml:ViewModelLocator2.AutoWireViewModel="True"
-        d:DataContext ="{d:DesignInstance {x:Type vml:MainWindowViewModel}}"
+        d:DataContext ="{d:DesignInstance {x:Type vml:MainViewModel}}" 
         >
     <Grid>
         <Grid.RowDefinitions>
@@ -26,15 +26,19 @@
         </StackPanel>
 
         <DockPanel Grid.Row="0" Grid.Column="1" Margin="5">
-            <Button DockPanel.Dock="Bottom" Content="Press Me" Command="{Binding Path=ShowAllBandsCommand}"/>
+            <Button DockPanel.Dock="Bottom" Content="Load data" Command="{Binding Path=ShowAllBandsCommand}"/>
+            <Button DockPanel.Dock="Bottom" Content="Edit Entry" Command="{Binding Path=OpenDialogCommand}"/>
             <!--<ListBox ItemsSource="{Binding Bands}" DisplayMemberPath="Name"/>-->
-            <ListView ItemsSource="{Binding Path=Bands}">
+            <ListView ItemsSource="{Binding Path=Bands}" SelectedItem="{Binding Path=SelectedBand, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                 <ListView.View>
                     <GridView>
                         <GridViewColumn DisplayMemberBinding="{Binding Name}" Header="Band Name"/>
                         <GridViewColumn DisplayMemberBinding="{Binding Genre}" Header="Genre"/>
                     </GridView>
                 </ListView.View>
+                <ListView.InputBindings>
+                    <MouseBinding Gesture="LeftDoubleClick" Command="{Binding ShowBandDetailsCommand}"/>
+                </ListView.InputBindings>
             </ListView>
 
         </DockPanel>
