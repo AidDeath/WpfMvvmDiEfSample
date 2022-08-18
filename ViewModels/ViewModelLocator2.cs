@@ -34,7 +34,7 @@ namespace WpfMvvmDiEfSample.ViewModels
             {
                 var viewModelType = FindViewModel(frameworkElement.GetType());
                 //frameworkElement.DataContext = Activator.CreateInstance(viewModelType);
-                frameworkElement.DataContext = ActivatorUtilities.CreateInstance(App.Current.Services, viewModelType);
+                frameworkElement.DataContext = ActivatorUtilities.CreateInstance(App.Current.AppHost.Services, viewModelType);
             }
         }
 
@@ -45,6 +45,7 @@ namespace WpfMvvmDiEfSample.ViewModels
             if (viewType.FullName.EndsWith("Window"))
             {
                 viewName = viewType.FullName
+                    .Replace("Window", string.Empty)
                     .Replace("Views", "ViewModels");
             }
 

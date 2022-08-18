@@ -7,15 +7,17 @@ using WpfMvvmDiEfSample.Services;
 
 namespace WpfMvvmDiEfSample.ViewModels
 {
-    public class MainWindowViewModel : BaseViewModel
+    public class MainViewModel : BaseViewModel
     {
         private readonly IRandomStringService _randStringService;
         private readonly BandService _bandService;
+        private BackgroundValuesProvider _valuesProvider;
 
-        public MainWindowViewModel(IRandomStringService randStringService, BandService bandService)
+        public MainViewModel(IRandomStringService randStringService, BandService bandService, BackgroundValuesProvider valuesProvider)
         {
             _randStringService = randStringService;
             _bandService = bandService;
+            _valuesProvider = valuesProvider;
 
             //Bands = bandService.GetAllBands();
 
@@ -29,6 +31,13 @@ namespace WpfMvvmDiEfSample.ViewModels
             get => _mainText;
             set => SetProperty(ref _mainText, value);
         }
+
+        public BackgroundValuesProvider ValuesProvider
+        {
+            get => _valuesProvider;
+            set => SetProperty(ref _valuesProvider, value);
+        }
+       
 
         private ObservableCollection<Band> _bands;
         public ObservableCollection<Band> Bands { get => _bands; set => SetProperty(ref _bands, value); }

@@ -44,7 +44,7 @@ namespace WpfMvvmDiEfSample.ViewModels
             var viewTypeName = str;
             var viewModelTypeName = viewTypeName + "ViewModel";
             var viewModelType = Type.GetType(viewModelTypeName);
-            var viewModel = ActivatorUtilities.CreateInstance(App.Current.Services, viewModelType);
+            var viewModel = ActivatorUtilities.CreateInstance(App.Current.AppHost.Services, viewModelType);
 
             ((FrameworkElement)dp).DataContext = viewModel;
         }
