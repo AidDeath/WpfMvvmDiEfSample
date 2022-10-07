@@ -34,6 +34,7 @@ namespace WpfMvvmDiEfSample.ViewModels
             {
                 var viewModelType = FindViewModel(frameworkElement.GetType());
                 //frameworkElement.DataContext = Activator.CreateInstance(viewModelType);
+                if (viewModelType is null) throw new TypeInitializationException($"Cannot find ViewModel type for view", null); 
                 frameworkElement.DataContext = ActivatorUtilities.CreateInstance(App.Current.AppHost.Services, viewModelType);
             }
         }
@@ -41,6 +42,7 @@ namespace WpfMvvmDiEfSample.ViewModels
         private static Type FindViewModel(Type viewType)
         {
             string viewName = string.Empty;
+            if (viewType.FullName is null) throw new TypeInitializationException("Cannot find ViewModel type for view", null); 
 
             if (viewType.FullName.EndsWith("Window"))
             {
@@ -49,10 +51,19 @@ namespace WpfMvvmDiEfSample.ViewModels
                     .Replace("Views", "ViewModels");
             }
 
+            if (viewType.FullName.EndsWith("View"))
+            {
+                viewName = viewType.FullName
+                    .Replace("View", string.Empty)
+                    .Replace("Views", "ViewModels");
+            }
+
             var viewAssemblyName = viewType.GetTypeInfo().Assembly.FullName;
             var viewModelName = string.Format(CultureInfo.InvariantCulture, "{0}ViewModel, {1}", viewName, viewAssemblyName);
+            
+            var viewModelType = Type.GetType(viewModelName) ?? throw new TypeInitializationException("Cannot find ViewModel type for view", null);
 
-            return Type.GetType(viewModelName);
+            return viewModelType;
         }
     }
 }

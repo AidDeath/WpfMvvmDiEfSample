@@ -1,12 +1,11 @@
 ﻿using System.Collections.ObjectModel;
 using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Input;
-using WpfMvvmDiEfSample.Helpers;
 using WpfMvvmDiEfSample.Helpers.Commands;
 using WpfMvvmDiEfSample.Models;
 using WpfMvvmDiEfSample.Services;
 using WpfMvvmDiEfSample.Views;
+using System.Linq;
+using System.Windows;
 
 namespace WpfMvvmDiEfSample.ViewModels
 {
@@ -29,7 +28,6 @@ namespace WpfMvvmDiEfSample.ViewModels
 
             ShowBandDetailsCommand = new RelayCommand(OnShowBandDetailsCommandExecuted, CanShowBandDetailsCommandExecute);
 
-            OpenDialogCommand = new RelayCommand(OnOpenDialog);
         }
 
         private string _mainText = "Press button for generate new text";
@@ -46,16 +44,16 @@ namespace WpfMvvmDiEfSample.ViewModels
         }
        
 
-        private ObservableCollection<Band> _bands;
-        public ObservableCollection<Band> Bands 
+        private ObservableCollection<Band>? _bands;
+        public ObservableCollection<Band>? Bands 
         { 
             get => _bands; 
             set => SetProperty(ref _bands, value); 
         }
 
         
-        private Band _selectedBand;
-        public Band SelectedBand
+        private Band? _selectedBand;
+        public Band? SelectedBand
         {
             get => _selectedBand;
             set => SetProperty(ref _selectedBand, value); 
@@ -82,9 +80,15 @@ namespace WpfMvvmDiEfSample.ViewModels
 
         private void OnShowBandDetailsCommandExecuted(object obj)
         {
-            var wnd = new BandDetailsWindow();
+            var wnd = new BandDetailsWindow(){
+                Owner = GetCurrentWindow()
+            };
 
-            var a = wnd.ShowDialog();
+            var vm = wnd.DataContext as BandDetailsViewModel;
+            vm.Band = SelectedBand;
+            vm.Title = "Details";
+            var a = wnd.ShowDialog();  
+
         }
 
         private bool CanShowBandDetailsCommandExecute(object obj)
@@ -93,17 +97,6 @@ namespace WpfMvvmDiEfSample.ViewModels
         }
 
 
-        private ICommand openDialogCommand;
-        public ICommand OpenDialogCommand
-        {
-            get => openDialogCommand;
-            set => openDialogCommand = value;
-        }
-
-        private void OnOpenDialog(object obj)
-        {
-
-        }
 
     }
 }

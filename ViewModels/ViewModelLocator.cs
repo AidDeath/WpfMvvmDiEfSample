@@ -37,13 +37,14 @@ namespace WpfMvvmDiEfSample.ViewModels
         {
             if (DesignerProperties.GetIsInDesignMode(dp)) return;
 
-            string str = dp.GetType().FullName;
+            string? str = dp.GetType().FullName;
 
-            str = str.Replace(".Views.", ".ViewModels.");
+            str = str?.Replace(".Views.", ".ViewModels.");
 
             var viewTypeName = str;
             var viewModelTypeName = viewTypeName + "ViewModel";
             var viewModelType = Type.GetType(viewModelTypeName);
+            if (viewModelType is null) throw new TypeInitializationException("Error while finding ViewModel type", null); 
             var viewModel = ActivatorUtilities.CreateInstance(App.Current.AppHost.Services, viewModelType);
 
             ((FrameworkElement)dp).DataContext = viewModel;

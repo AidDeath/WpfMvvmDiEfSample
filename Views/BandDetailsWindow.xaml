@@ -10,7 +10,7 @@
         d:DataContext ="{d:DesignInstance {x:Type vml:BandDetailsViewModel}}"
         Title="{Binding Title}" Height="150" Width="200" WindowStartupLocation="CenterOwner" ResizeMode="NoResize" WindowStyle="ToolWindow">
     <DockPanel Margin="3">
-        <Button DockPanel.Dock="Bottom" Content="Submit"></Button>
+        <Button DockPanel.Dock="Bottom" Content="Submit" Command="{Binding SubmitChangesCommand}"></Button>
         <StackPanel Orientation="Vertical">
             <TextBlock Text="{Binding Band.Name, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
             <TextBlock Text="{Binding Band.Genre, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>

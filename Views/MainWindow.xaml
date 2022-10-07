@@ -27,7 +27,7 @@
 
         <DockPanel Grid.Row="0" Grid.Column="1" Margin="5">
             <Button DockPanel.Dock="Bottom" Content="Load data" Command="{Binding Path=ShowAllBandsCommand}"/>
-            <Button DockPanel.Dock="Bottom" Content="Edit Entry" Command="{Binding Path=OpenDialogCommand}"/>
+            <Button DockPanel.Dock="Bottom" Content="Edit Entry" Command="{Binding Path=ShowBandDetailsCommand}"/>
             <!--<ListBox ItemsSource="{Binding Bands}" DisplayMemberPath="Name"/>-->
             <ListView ItemsSource="{Binding Path=Bands}" SelectedItem="{Binding Path=SelectedBand, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                 <ListView.View>
@@ -36,9 +36,6 @@
                         <GridViewColumn DisplayMemberBinding="{Binding Genre}" Header="Genre"/>
                     </GridView>
                 </ListView.View>
-                <ListView.InputBindings>
-                    <MouseBinding Gesture="LeftDoubleClick" Command="{Binding ShowBandDetailsCommand}"/>
-                </ListView.InputBindings>
             </ListView>
 
         </DockPanel>

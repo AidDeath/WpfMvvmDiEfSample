@@ -1,8 +1,11 @@
 ﻿using WpfMvvmDiEfSample.Models;
+using System.Collections.ObjectModel;
+using System.Linq;
+using System.Windows;
 
 namespace WpfMvvmDiEfSample.ViewModels
 {
-	public class BaseViewModel : ObservableObject
+	public abstract class BaseViewModel : ObservableObject
 	{
 		string? title = string.Empty;
 
@@ -107,6 +110,15 @@ namespace WpfMvvmDiEfSample.ViewModels
 		{
 			get => footer;
 			set => SetProperty(ref footer, value);
+		}
+
+		
+		/// <summary>
+		/// Get window which is using current viewmodel
+		/// </summary>
+
+		protected Window? GetCurrentWindow(){
+			return (Window)App.Current.Windows.OfType<object>()?.FirstOrDefault(w => (w as Window)?.DataContext == this);
 		}
 	}
 }

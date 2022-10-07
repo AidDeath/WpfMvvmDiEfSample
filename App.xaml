@@ -5,6 +5,7 @@
              Startup="OnStartup" >
     <!--StartupUri="Views/MainWindow.xaml"  - for launch without DI-->
     <Application.Resources>
+
          
     </Application.Resources>
 </Application>

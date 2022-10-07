@@ -10,8 +10,8 @@ namespace WpfMvvmDiEfSample.ViewModels
         {
             SubmitChangesCommand = new RelayCommand(OnSubmitChangesCommandExecuted, CanSubmitChangesCommandExecute);
         }
-        private Band _band;
-        public Band Band
+        private Band? _band;
+        public Band? Band
         {
             get => _band;
             set => SetProperty(ref _band, value);
@@ -21,7 +21,9 @@ namespace WpfMvvmDiEfSample.ViewModels
 
         private void OnSubmitChangesCommandExecuted(object obj)
         {
-            MessageBox.Show("Okay! =)");
+            var wnd = GetCurrentWindow();
+            wnd.DialogResult = true;
+            wnd.Close();
         }
 
         private bool CanSubmitChangesCommandExecute(object obj)

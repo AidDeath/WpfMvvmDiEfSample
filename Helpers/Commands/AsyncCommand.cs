@@ -9,7 +9,7 @@ namespace WpfMvvmDiEfSample.Helpers.Commands
     /// </summary>
     public abstract class AsyncCommand : IRaisedCommand
     {
-        public event EventHandler CanExecuteChanged
+        public event EventHandler? CanExecuteChanged
         {
             add => CommandManager.RequerySuggested += value;
             remove => CommandManager.RequerySuggested -= value;
@@ -24,12 +24,12 @@ namespace WpfMvvmDiEfSample.Helpers.Commands
 
         public abstract bool CanExecute(object parameter);
 
-        bool ICommand.CanExecute(object parameter)
+        bool ICommand.CanExecute(object? parameter)
         {
             return CanExecute(parameter);
         }
 
-        async void ICommand.Execute(object parameter)
+        async void ICommand.Execute(object? parameter)
         {
             await ExecuteAsync(parameter);
         }
