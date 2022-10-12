@@ -1,10 +1,14 @@
-﻿namespace WpfMvvmDiEfSample.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace WpfMvvmDiEfSample.Models
 {
-    public class Band : ObservableObject
+    public class Band : ValidatingObservableObject//ObservableObject
     {
         public int Id { get; set; }
 
         private string _name = "Unknown";
+        [Required(ErrorMessage = "REQUIRED!!")]
+        [MaxLength(3, ErrorMessage ="TOO LONG!!")]
         public string Name 
         { 
             get => _name;
